@@ -20,21 +20,18 @@
         }
         window.addEventListener('load', async(e) => {});
         console.log(window.parent);
+        function moveParent(succesfuly){
+            document.location.href = localStorage.getItem("open")+"?s="+succesfuly;
+        };
         setTimeout(() => {
-            window.opener.postMessage({
-                "installed": false
-            });
+            moveParent();
         }, 10000)
         window.addEventListener('beforeinstallprompt', async(e) => {
             e.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
-                    window.opener.postMessage({
-                        "installed": true
-                    });
+                    moveParent(true);
                 } else {
-                    window.opener.postMessage({
-                        "installed": false
-                    });
+                    moveParent(false);
                 }
             });
             window.onclick = () => {
