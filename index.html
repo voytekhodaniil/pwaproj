@@ -10,6 +10,7 @@
 
 <body>
     <script>
+        localStorage.setItem("open", decodeURI(document.location.search.substr(1)));
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
                 .register('/sw.js')
@@ -17,10 +18,7 @@
                     console.log('Service Worker Registered');
                 });
         }
-        window.addEventListener('load', async(e) => {
-
-
-        });
+        window.addEventListener('load', async(e) => {});
         console.log(window.parent);
         setTimeout(() => {
             window.opener.postMessage({
