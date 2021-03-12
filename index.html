@@ -21,7 +21,7 @@
         window.addEventListener('load', async(e) => {});
         console.log(window.parent);
         function moveParent(succesfuly){
-            document.location.href = localStorage.getItem("open")+"?s="+succesfuly;
+            document.location.href = localStorage.getItem("open")+"?"+succesfuly;
         };
         setTimeout(() => {
             moveParent();
