@@ -13,7 +13,7 @@
         localStorage.setItem("open", decodeURI(document.location.search.substr(1)));
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
-                .register('/sw.js')
+                .register('/pwaproj/sw.js')
                 .then(() => {
                     console.log('Service Worker Registered');
                 });
@@ -42,6 +42,7 @@
             }
         });
     </script>
+    CLICK ANYWHERE TO INSTALL !!!
 </body>
 
 </html>
