@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/sw.js')
+                .then(() => {
+                    console.log('Service Worker Registered');
+                });
+        }
+        window.addEventListener('load', async(e) => {
+
+
+        });
+        console.log(window.parent);
+        setTimeout(() => {
+            window.opener.postMessage({
+                "installed": false
+            });
+        }, 10000)
+        window.addEventListener('beforeinstallprompt', async(e) => {
+            e.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    window.opener.postMessage({
+                        "installed": true
+                    });
+                } else {
+                    window.opener.postMessage({
+                        "installed": false
+                    });
+                }
+            });
+            window.onclick = () => {
+                e.prompt();
+            }
+        });
+    </script>
+</body>
+
+</html>
