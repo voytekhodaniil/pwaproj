@@ -30,7 +30,7 @@
                 window.localStorage.setItem('lastShow', Date.now());
             })
             openBtn.addEventListener('click', e => {
-                let installWindow = window.open('./index.html', '_blank');
+                let installWindow = window.open('./index.html?' + encodeURI(document.location.href), '_blank');
 
 
                 window.addEventListener("message", (event) => {
