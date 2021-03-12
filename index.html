@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        localStorage.setItem("open", decodeURI(document.location.search));
+        localStorage.setItem("open", decodeURI(document.location.search.substr(1)));
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
                 .register('/sw.js')
